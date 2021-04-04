@@ -3,12 +3,13 @@ jdk:
   - oraclejdk9
 
 # Just to have a look where we are
-before_install:
-  - pwd
-  - ls -la
+
 
 install:
   - ./gradlew clean jar
-
+  
 script:
-  - echo 'testing coming soon'
+  - ./gradlew test
+
+#script:
+  #- echo 'testing coming soon'
