@@ -1,19 +1,29 @@
 language: java
 jdk:
+  - oraclejdk8
   - oraclejdk9
-
-# Just to have a look where we are
-
-
+services:
+  - docker
+env:
+  matrix:
+    - COVERAGE=0.5 BUILD_TARGET=./monolithic/ui
+    - COVERAGE=0.5 BUILD_TARGET=./monolithic/service/cart
+    - COVERAGE=0.5 BUILD_TARGET=./monolithic/service/user
+    - COVERAGE=0.5 BUILD_TARGET=./monolithic/repository/order
+    - COVERAGE=0.5 BUILD_TARGET=./monolithic/repository/cart
+    - COVERAGE=0.5 BUILD_TARGET=./monolithic/repository/product
+    - COVERAGE=0.5 BUILD_TARGET=./monolithic/repository/user
+  global:
+    - DOCKER_LOGIN=vaibhavbiradar
+    - secure:{secrets.DOCKER_PASSWORD}
 install:
-  - ./gradlew clean jar
-  
+  - "./gradlew clean jar"
 script:
-  - ./gradlew test
-
-#script:
-  #- echo 'testing coming soon'
-
+  - "./gradlew -p $BUILD_TARGET check"
 after_success:
-  - ./gradlew jacocoTestReport
   - find . -name jacocoTestReport.csv|xargs cat|awk -F',' '{print $3" "$4" "$5}'
+deploy:
+  provider: script
+  script: ./script/deploy.sh
+  on:
+    all_branches: true
