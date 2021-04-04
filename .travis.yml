@@ -12,7 +12,7 @@ env:
     - COVERAGE=0.5 BUILD_TARGET=./monolithic/repository/product
     - COVERAGE=0.5 BUILD_TARGET=./monolithic/repository/user
    global:
-    - DOCKER_LOGIN=evygovska
+    - DOCKER_LOGIN=vaibhavbiradar
     - secure: {secrets.DOCKER_PASSWORD}   
 
 install:
