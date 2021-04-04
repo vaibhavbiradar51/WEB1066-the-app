@@ -1,6 +1,6 @@
 language: java
 jdk:
-  - oraclejdk8
+  - oraclejdk9
 
 before_install:
   # execute all of the commands which need to be executed
