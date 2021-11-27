@@ -4,7 +4,7 @@
 This application and its continuous delivery pipeline is used as training
 material during the DevOps Dojo green belt training.
 
-## Overview
+## Overview of project
 This application gives software architects and developers an example how a
 microservice web application can look like and it simulates a development
 cluster, which contains continuous integration infrastructure as well as all
